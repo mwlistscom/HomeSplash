@@ -1,4 +1,4 @@
-# home_splash
+# Home Splash
 
 Simple PHP splash landing page for home server.
 
