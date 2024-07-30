@@ -15,3 +15,5 @@ This was only tested on Linux, please create Issue for any changes
 ## Installation
 Copy all the files to the root of your webserver. The script will create a config.php,  links.json, and an icons directory.
 Visit your server and customize using the links on the bottom right (Links && Config)
+
+This is very insecure - don't use at work !
