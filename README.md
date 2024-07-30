@@ -13,7 +13,5 @@ Linux, macOS, or Windows web server, and PHP 8+
 This was only tested on Linux, please create Issue for any changes
 
 ## Installation
-Copy all the files to the root of your webserver. The script will create a config.php, a links.json, and an icons directory
+Copy all the files to the root of your webserver. The script will create a config.php,  links.json, and an icons directory.
 Visit your server and customize using the links on the bottom right (Links && Config)
-
-
