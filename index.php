@@ -702,9 +702,9 @@ document.getElementById('edit-links').addEventListener('click', function(e) {
             data: data.Links,
             layout: "fitColumns",
             columns: [
-                { title: "Name", field: "name", editor: "input" },
-                { title: "Link", field: "link", editor: "input" },
-                { title: "Icon", field: "icon", editor: "input" },
+                { title: "Name", field: "name", editor: "input", cellEdited: saveTableData },
+                { title: "Link", field: "link", editor: "input", cellEdited: saveTableData },
+                { title: "Icon", field: "icon", editor: "input", cellEdited: saveTableData },
                 { formatter: "buttonCross", width: 40, hozAlign: "center", cellClick: function(e, cell) {
                     cell.getRow().delete();
                     saveTableData(); // Save data after deleting row
