@@ -692,7 +692,6 @@ if (isset($data['Links'])) {
             e.target.remove();
         }
     });
-
 document.getElementById('edit-links').addEventListener('click', function(e) {
     e.preventDefault();
 
@@ -701,6 +700,7 @@ document.getElementById('edit-links').addEventListener('click', function(e) {
         var table = new Tabulator("#links-table", {
             data: data.Links,
             layout: "fitColumns",
+            height: "auto", // Adjust height to fit all rows
             columns: [
                 { title: "Name", field: "name", editor: "input", cellEdited: saveTableData },
                 { title: "Link", field: "link", editor: "input", cellEdited: saveTableData },
@@ -791,8 +791,8 @@ document.getElementById('edit-config').addEventListener('click', function(e) {
     e.preventDefault();
 
     $('#config-editor').dialog({
-	modal: true,
-	width: '50%',
+        modal: true,
+        width: '50%',
         buttons: {
             "Save": function() {
                 var configData = {
@@ -810,8 +810,8 @@ document.getElementById('edit-config').addEventListener('click', function(e) {
                     type: 'POST',
                     data: JSON.stringify(configData),
                     contentType: 'application/json',
-		    success: function() {
-			 window.location.href = window.location.href.split('?')[0]; // Force reload of the page to re-read the config.php
+                    success: function() {
+                         window.location.href = window.location.href.split('?')[0]; // Force reload of the page to re-read the config.php
                     }
                 });
 
