@@ -724,6 +724,12 @@ document.getElementById('edit-links').addEventListener('click', function(e) {
 
         // Add link functionality
         $('#add-link').off('click').on('click', function() {
+    // Clear form fields
+    $('#link-name').val('');
+    $('#link-url').val('');
+    $('#link-icon').val('');
+    $('#icon-file').val('');
+
             $('#add-link-form').dialog({
                 modal: true,
                 width: 'auto',
@@ -823,6 +829,3 @@ document.getElementById('edit-config').addEventListener('click', function(e) {
         }
     });
 });
-</script>
-</body>
-</html>
