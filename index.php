@@ -1,6 +1,6 @@
 <?php
 /**
- * Server Dashboard Script
+ * HomeSplash
  *
  * This script generates a server dashboard with configurable settings and links.
  *
@@ -269,6 +269,7 @@ if (!empty($_GET["json"])) {
     ]));
 }
 
+//Circumference of the SVG circle used to create the circular progress indicators (or "rings") for displaying resource usage metrics like disk usage, memory usage, swap usage, and CPU usage.
 $ringBase = 339.292;
 ?>
 <!doctype html>
@@ -280,14 +281,13 @@ $ringBase = 339.292;
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
 body {
-    height: 60vh;
+    height: 100vh;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: <?php echo $color_bg; ?>;
-    overflow: hidden;
 }
 .main, .footer {
     padding-left: 15%;
@@ -295,12 +295,20 @@ body {
 }
 
 .main {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: start;
     padding-top: 6.5rem;
+    overflow-y: auto;
 }
+/* '.content' class to handle scrolling */
+.content {
+    flex: 1;
+    overflow-y: auto;        /* Enable vertical scrolling */
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
 .main h1 {
     font-size: 4rem;
     font-weight: 300;
@@ -371,19 +379,9 @@ a:hover, a:focus, a:active {
     font-size: 0.85rem;
 }
 
-.overlay {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.3;
-}
 .details {
     z-index: 2;
-    position: absolute;
+    position: fixed;         /* Change from 'absolute' to 'fixed' */
     box-sizing: border-box;
     padding: 1em 15%;
     bottom: 0;
@@ -409,6 +407,16 @@ a:hover, a:focus, a:active {
     font-size: 2em;
     margin: 0;
     line-height: 1.3;
+}
+.overlay {
+    z-index: 1;
+    position: fixed;         /* Change from 'absolute' to 'fixed' */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;            /* Ensure it covers the entire viewport */
+    background-color: black;
+    opacity: 0.3;
 }
 
 /* Begin: Custom CSS */
@@ -460,7 +468,7 @@ a:hover, a:focus, a:active {
         <h1><?php echo $server_name; ?></h1>
         <p><?php echo $server_desc; ?></p>
     </main>
-
+<div class="content">
 <?php
 // Load JSON from the links.json file
 $json = file_get_contents('links.json');
@@ -492,7 +500,7 @@ if (isset($data['Links'])) {
     echo '</div>';
 }
 ?>
-
+</div>
     <footer class="footer">
         <?php if (!$windows && !empty($uptime)) { ?>
             <div>Uptime: <span id="uptime"><?php echo $uptime; ?></span></div>
@@ -829,3 +837,6 @@ document.getElementById('edit-config').addEventListener('click', function(e) {
         }
     });
 });
+</script>
+</body>
+</html>
